@@ -1,1 +1,3 @@
-console.log("Hello World");
+import {moveCards} from "./modules/moveCards.mjs";
+
+moveCards();
