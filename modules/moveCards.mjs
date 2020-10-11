@@ -2,15 +2,14 @@
 
 /*createCard.setAttribute("draggable", true);
 createCard.setAttribute("ondragstart", "event.dataTransfer.setData('text/plain',null)");
-createCard.setAttribute("id", vad som helst);
-moveCards();*/
+createCard.setAttribute("id", vad som helst);*/
 
 export function moveCards () {
     console.log("This function may move cards..");
             //variabel för elementreferens
            var dragged;
         
-          // alla element med "drag" attributet aktiveras
+          // element med "drag" attributet aktiveras
           document.addEventListener("drag", function( event ) {
         
           }, false);
