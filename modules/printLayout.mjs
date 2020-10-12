@@ -1,7 +1,4 @@
 export function printLayout() {
-  console.log("Hello from mjs!");
-
-
 let kortArray = ["list1","list3","list2","list4","list3","list2","list4","list2","list1","list2","list3","list1","list4","list2"];
 
 let todo = "<ul>";
@@ -10,20 +7,16 @@ let test = "<ul>";
 let done = "<ul>";
 kortArray.forEach(function(kort) {
   if(kort == "list1"){
-    //sortera till add1 div
-    console.log("Kort 1 här...");
+    //sortera till todo div
     todo += `<li>Kort 1 här...</li>`;
   }if (kort == "list2") {
-    //sortera till add2 div
-    console.log("Kort 2 här...");
+    //sortera till doing div
     doing += `<li>Kort 2 här...</li>`;
   }if (kort == "list3") {
-    //sortera till add3 div
-    console.log("Kort 3 här...");
+    //sortera till test div
     test += `<li>Kort 3 här...</li>`;
   }if (kort == "list4") {
-    //sortera till add4 div
-    console.log("Kort 4 här...");
+    //sortera till done div
     done += `<li>Kort 4 här...</li>`;
   }else {
     console.log("Error...");
