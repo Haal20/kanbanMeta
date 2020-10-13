@@ -1,7 +1,7 @@
 import { CreateView, CreateKanBan} from './Modules/view.mjs';
 //Use this function for adding Header and footer
-CreateView();
 
+import {logIn} from './Modules/logIn.mjs'
 
-//Use function for creating boards
-CreateKanBan();
+logIn();
+
