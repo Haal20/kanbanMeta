@@ -32,8 +32,9 @@ export function logIn()
     
         if(localStorage.length == 1)
         {
-            CreateKanBan();
             CreateView();
+            CreateKanBan();
+            
         }
        else
        {
