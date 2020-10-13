@@ -1,3 +1,5 @@
+//import { cardInput, createCardElement, updateLocalStorage, addCard } from './Modules/createCards.mjs';
+
 export function CreateView(){
     let Header = document.createElement('Div');
     Header.setAttribute('id', 'Header');
@@ -47,6 +49,7 @@ export function CreateKanBan(){
     document.getElementById('add2').addEventListener('click', function(){cardInput('2');});
     document.getElementById('add3').addEventListener('click', function(){cardInput('3');});
     document.getElementById('add4').addEventListener('click', function(){cardInput('4');});
+    loadLocalstorage()
 }
 
 export function cardInput(type){
@@ -69,12 +72,6 @@ export function cardInput(type){
     }
 }
 
-/*input.addEventListener('keyup', event => {
-    if(event.keycode == 13) {
-        addTodoCard(input.value)
-    }
-})*/
-
 export function createCardElement(cardType, text){
     let card = document.createElement('div');
     card.setAttribute('class', 'card')
@@ -82,13 +79,19 @@ export function createCardElement(cardType, text){
     card.id = '_' + Math.random().toString(36).substr(2,9);
     card.setAttribute("draggable", true);
     card.setAttribute("ondragstart", "event.dataTransfer.setData('text/plain',null)");
-    card.addEventListener('click', function(){card.remove();});
+    card.addEventListener('click', function(){
+        let result = window.confirm('Är det säkert att du vill ta bort kortet?')
+        if (result){
+            card.remove()
+            updateLocalStorage()
+        }
+
+    });
     card.innerHTML = text;
     document.getElementById(cardType).appendChild(card);
 }
 
 export function updateLocalStorage(){
-
     let allCards = [];
     document.querySelectorAll('.card').forEach(card => {
         const object = {
@@ -101,6 +104,22 @@ export function updateLocalStorage(){
     localStorage.setItem('myCards', JSON.stringify(allCards))
 }
 
+
+//funktion för att hämta kort från localstorage
+
+/*export function loadLocalstorage(){
+    let allCards = localStorage.getItem('myCards');
+    if (allCards){
+        allCards = JSON.parse(allCards)
+        console.log(allCards)
+        allCards.forEach(card => {
+            createCardElement(card.type, card.text)
+        })
+    }
+}*/
+
+
+
 export function addCard(cardType){
     return function(event){
         if (event.keyCode == 13) {
@@ -108,18 +127,6 @@ export function addCard(cardType){
             createCardElement(cardType, input.value)
             input.remove();
             updateLocalStorage();
-            /*let card = document.createElement('div');
-            card.id = '_' + Math.random().toString(36).substr(2,9);
-            card.setAttribute("draggable", true);
-            card.setAttribute("ondragstart", "event.dataTransfer.setData('text/plain',null)");
-            card.addEventListener('click', function(){card.remove();});
-            const input = document.getElementById('inputData')
-            card.innerHTML = input.value;
-            document.getElementById(cardType).appendChild(card);
-            input.remove();*/
         }
     }
 }
-
-
-
