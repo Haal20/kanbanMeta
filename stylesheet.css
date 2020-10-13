@@ -76,6 +76,17 @@ body
   width: Auto;
   
 }
+#logIn
+  {
+      
+    margin: auto;
+    width: 50%;
+    padding: 80px;
+    text-align: center;
+    border: 5px solid black;
+    background-color: whitesmoke;
+    color: black;
+  }
 #cards
 {
   display: table;
