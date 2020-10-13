@@ -49,7 +49,7 @@ export function CreateKanBan(){
     document.getElementById('add2').addEventListener('click', function(){cardInput('2');});
     document.getElementById('add3').addEventListener('click', function(){cardInput('3');});
     document.getElementById('add4').addEventListener('click', function(){cardInput('4');});
-    loadLocalstorage()
+    //loadLocalstorage()
 }
 
 export function cardInput(type){
