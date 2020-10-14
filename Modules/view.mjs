@@ -1,3 +1,5 @@
+//import { cardInput, createCardElement, updateLocalStorage, addCard } from './Modules/createCards.mjs';
+
 export function CreateView(){
     let Header = document.createElement('Div');
     Header.setAttribute('id', 'Header');
@@ -20,8 +22,6 @@ export function CreateView(){
     "</div>" +
     "<hr></hr>" 
 
-    
-
 document.getElementById("Footer").innerHTML = "" +
     "<div id='margin'>" +
     "<div id='footer'>" +
@@ -37,12 +37,96 @@ document.getElementById("Footer").innerHTML = "" +
 export function CreateKanBan(){
     document.getElementById("Container").innerHTML = "" + 
     "<div id='cards'>" +
-    "<div id='todo' class='add'>To do<a id='add1 onclick='AddToDo()'>+</a></div>" +
-    "<div id='doing' class='add'>Doing<a id='add2' onclick='Adddoing()'>+</a></div>" +
-    "<div id='test' class='add'>Test<a id='add3' onclick='Addtest()'>+</a></div>" +
-    "<div id='done' class='add'>Done<a id='add4' onclick='Adddone()'>+</a></div>"+
+    "<div id='todo' class='add'>To do<a id='add1'>+</a></div>" +
+    "<div id='doing' class='add'>Doing<a id='add2'>+</a></div>" +
+    "<div id='test' class='add'>Test<a id='add3'>+</a></div>" +
+    "<div id='done' class='add'>Done<a id='add4'>+</a></div>"+
     "</div>"
+    document.getElementById('add1').addEventListener('click', function(){
+        console.log("add1")
+        cardInput('1');
+    });
+    document.getElementById('add2').addEventListener('click', function(){cardInput('2');});
+    document.getElementById('add3').addEventListener('click', function(){cardInput('3');});
+    document.getElementById('add4').addEventListener('click', function(){cardInput('4');});
+    //loadLocalstorage()
+}
+
+export function cardInput(type){
+    let input = document.createElement('Input')
+    input.setAttribute('Type', 'Text');
+    input.setAttribute('id', 'inputData');
+    input.placeholder = "Add a new card";
+    document.getElementById('Container').appendChild(input); 
+    if (type === '1'){
+        input.addEventListener('keyup', addCard('todo'));
+    }
+    else if (type === '2'){
+        input.addEventListener('keyup', addCard('doing'));
+    }
+    else if (type === '3'){
+        input.addEventListener('keyup', addCard('test'));
+    }
+    else if (type === '4'){
+        input.addEventListener('keyup', addCard('done'));
+    }
+}
+
+export function createCardElement(cardType, text){
+    let card = document.createElement('div');
+    card.setAttribute('class', 'card')
+    card.setAttribute('data-type', cardType)
+    card.id = '_' + Math.random().toString(36).substr(2,9);
+    card.setAttribute("draggable", true);
+    card.setAttribute("ondragstart", "event.dataTransfer.setData('text/plain',null)");
+    card.addEventListener('click', function(){
+        let result = window.confirm('Är det säkert att du vill ta bort kortet?')
+        if (result){
+            card.remove()
+            updateLocalStorage()
+        }
+
+    });
+    card.innerHTML = text;
+    document.getElementById(cardType).appendChild(card);
+}
+
+export function updateLocalStorage(){
+    let allCards = [];
+    document.querySelectorAll('.card').forEach(card => {
+        const object = {
+            type: card.dataset.type,
+            text: card.innerText
+        }
+        allCards.push(object)
+    })
+    console.log(allCards)
+    localStorage.setItem('myCards', JSON.stringify(allCards))
 }
 
 
+//funktion för att hämta kort från localstorage
 
+/*export function loadLocalstorage(){
+    let allCards = localStorage.getItem('myCards');
+    if (allCards){
+        allCards = JSON.parse(allCards)
+        console.log(allCards)
+        allCards.forEach(card => {
+            createCardElement(card.type, card.text)
+        })
+    }
+}*/
+
+
+
+export function addCard(cardType){
+    return function(event){
+        if (event.keyCode == 13) {
+            let input = document.getElementById('inputData')
+            createCardElement(cardType, input.value)
+            input.remove();
+            updateLocalStorage();
+        }
+    }
+}
