@@ -15,7 +15,7 @@ export function CreateView(){
     document.getElementById("Header").innerHTML = "" + 
     "<div id='header'>" +
     "<nav class='navmenu gradient'>" +
-            "<a id='login' onclick='StartView()'>Logga in <i class='far fa-envelope'></i></a>" +           
+            "<a id='login'>Logga ut <i class='far fa-envelope'></i></a>" +           
     "</nav>"+
     "<span id='top'>" +
     "<h1 class='font-effect-shadow-multiple'>KanBan Board</h1>" + 
@@ -23,6 +23,10 @@ export function CreateView(){
     "</div>" +
     "<hr></hr>" 
 
+    document.getElementById('login').addEventListener('click', function(){
+        localStorage.removeItem("user")
+        location.reload();
+    });
 document.getElementById("Footer").innerHTML = "" +
     "<div id='margin'>" +
     "<div id='footer'>" +
