@@ -1,7 +1,7 @@
 //import { cardInput, createCardElement, updateLocalStorage, addCard } from './Modules/createCards.mjs';
 import { printLayout } from "./printLayout.mjs";
 
-export function CreateView(){
+export function CreateView(user){
     let Header = document.createElement('Div');
     Header.setAttribute('id', 'Header');
     document.body.append(Header);
@@ -19,6 +19,7 @@ export function CreateView(){
     "</nav>"+
     "<span id='top'>" +
     "<h1 class='font-effect-shadow-multiple'>KanBan Board</h1>" + 
+    "<h2>Välkommen " + user  + "</h2>" +
     "</span>" +
     "</div>" +
     "<hr></hr>" 
