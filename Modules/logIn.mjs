@@ -32,7 +32,7 @@ export function logIn(){
     
         if(localStorage.getItem("user") !== null)
         {
-            CreateView();
+            CreateView(localStorage.getItem("user"));
             CreateKanBan();
             Content.remove();
         }
@@ -46,7 +46,7 @@ export function logIn(){
         {
            if (user == users[i].name && pass == users[i].pass)
             {
-                CreateView();
+                CreateView(user);
                 CreateKanBan();
                 Content.remove();
                 localStorage.setItem("user", user)
