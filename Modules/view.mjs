@@ -1,4 +1,5 @@
 //import { cardInput, createCardElement, updateLocalStorage, addCard } from './Modules/createCards.mjs';
+import { printLayout } from "./printLayout.mjs";
 
 export function CreateView(){
     let Header = document.createElement('Div');
@@ -49,7 +50,7 @@ export function CreateKanBan(){
     document.getElementById('add2').addEventListener('click', function(){cardInput('2');});
     document.getElementById('add3').addEventListener('click', function(){cardInput('3');});
     document.getElementById('add4').addEventListener('click', function(){cardInput('4');});
-    //loadLocalstorage()
+    printLayout();
 }
 
 export function cardInput(type){
@@ -103,22 +104,6 @@ export function updateLocalStorage(){
     console.log(allCards)
     localStorage.setItem('myCards', JSON.stringify(allCards))
 }
-
-
-//funktion för att hämta kort från localstorage
-
-/*export function loadLocalstorage(){
-    let allCards = localStorage.getItem('myCards');
-    if (allCards){
-        allCards = JSON.parse(allCards)
-        console.log(allCards)
-        allCards.forEach(card => {
-            createCardElement(card.type, card.text)
-        })
-    }
-}*/
-
-
 
 export function addCard(cardType){
     return function(event){
