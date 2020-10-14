@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "name": "janne",
+        "pass": "test"
+        
+    },{
+        "id": 2,
+        "name": "Tom",
+        "pass": "Martensson"
+    },{
+        "id": 3,
+        "name": "Johanna",
+        "pass": "Eriksson"
+    },{
+        "id": 4,
+        "name": "Alma",
+        "pass": "Harlin"
+    },{
+        "id": 5,
+        "name": "Glenn",
+        "pass": "Nilsson"
+    },{
+        "id": 6,
+        "name": "Oskar",
+        "pass": "Kanstedt"
+    },{
+        "id": 7,
+        "name": "Joel",
+        "pass": "Storck"
+    }
+]
