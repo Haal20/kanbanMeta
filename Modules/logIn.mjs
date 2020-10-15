@@ -11,6 +11,7 @@ export function logIn(){
     userInp.setAttribute("placeholder", "Användarnamn")
     let passInp = document.createElement("input")
     passInp.setAttribute("placeholder", "Lösenord")
+    passInp.setAttribute("type", "password");
     let userBtn = document.createElement("button")
     //Variables for inputboxes and button
 
