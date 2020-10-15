@@ -121,8 +121,36 @@ div#footer a:visited { text-decoration:underline;  color: #333333;}
 div#footer a:hover   { text-decoration:underline;  color: #333333;}
 div#footer a:active  { text-decoration:underline;  color: #333333;}
 
+.card {
+  font-size: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: solid 2px;
+  border-radius: 15px;
+  border-color: #333333;
+  position: relative; 
+  right: 0px;
+  background-color: rgb(189, 247, 189);
+  margin: 10px;  
+}
 
-
+#inputData {
+  font-size: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: solid 2px;
+  border-radius: 15px;
+  border-color: #333333;
+  position: relative; 
+  right: 0px;
+  background-color: rgb(189, 247, 189);  
+  width: 60%;
+  margin-left: 20%;
+}
 
 
 
