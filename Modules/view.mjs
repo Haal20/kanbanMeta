@@ -93,7 +93,12 @@ export function createCardElement(cardType, text){
     card.id = '_' + Math.random().toString(36).substr(2,9);
     card.setAttribute("draggable", true);
     card.setAttribute("ondragstart", "event.dataTransfer.setData('text/plain',null)");
-    card.addEventListener('click', function(){
+    var test = "edit" + card.id;
+    var d = "del" + card.id;
+    card.innerHTML = text + "<a id='" + test.toString() + "'>+</a>" + "<a id='" + d.toString() + "'>-</a>";
+    document.getElementById(cardType).appendChild(card);
+    document.getElementById(test).addEventListener('click', function(){editcard(this.id);});
+    document.getElementById(d).addEventListener('click', function(){
         let result = window.confirm('Är det säkert att du vill ta bort kortet?')
         if (result){
             card.remove()
@@ -101,8 +106,6 @@ export function createCardElement(cardType, text){
         }
 
     });
-    card.innerHTML = text;
-    document.getElementById(cardType).appendChild(card);
 }
 
 export function updateLocalStorage(){
@@ -114,7 +117,7 @@ export function updateLocalStorage(){
         }
         allCards.push(object)
     })
-    console.log(allCards)
+    console.log(allCards).innerHTML
     localStorage.setItem('myCards', JSON.stringify(allCards))
 }
 
@@ -126,5 +129,48 @@ export function addCard(cardType){
             input.remove();
             updateLocalStorage();
         }
+    }
+}
+
+export function editcard(id)
+{
+    var cardid = id.replace('edit', '');
+    var card = document.getElementById(cardid);
+    let input = document.createElement('Input')
+    input.setAttribute('Type', 'Text');
+    input.setAttribute('id', 'inputData');
+    input.placeholder = "edit card";
+    document.getElementById('Container').appendChild(input); 
+    input.addEventListener("keyup", function(event) {
+        if (event.keyCode == 13) {
+         event.preventDefault();
+         let input = document.getElementById('inputData')
+            card.innerHTML = "";
+            var test = "edit" + cardid;
+            var d = "del" + card.id;
+            card.innerHTML = input.value + "<a id='" + test.toString() + "'>+</a>" + "<a id='" + d.toString() + "'>-</a>";
+            document.getElementById(test).addEventListener('click', function(){editcard(this.id);});
+            document.getElementById(d).addEventListener('click', function(){
+                let result = window.confirm('Är det säkert att du vill ta bort kortet?')
+                if (result){
+                    card.remove()
+                    updateLocalStorage()
+                }
+        
+            });
+
+            input.remove();
+            updateLocalStorage();
+        }
+      });
+}
+
+function deleting(del){
+    var txt;
+    var r = confirm("Do you want to delete selected item?");
+    if (r == true) {
+      remove(del);
+    } else {
+        ;
     }
 }
