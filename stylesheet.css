@@ -95,6 +95,12 @@ body
   margin: auto;
   width: 95%;
   padding: 10px; 
+
+}
+
+.card:hover {
+background-color: azure;
+cursor: grab;
 }
 
 

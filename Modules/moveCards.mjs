@@ -1,3 +1,5 @@
+import  { updateLocalStorage } from './view.mjs';
+
 export function moveCards () {
     console.log("This function may move cards..");
     
@@ -35,7 +37,7 @@ export function moveCards () {
     //Bestämmer vad som händer när du håller element över en "addzone"
     document.addEventListener("dragenter", function( event ) {
         if ( event.target.className == "add" ) {
-            event.target.style.background = "yellow";
+            event.target.style.background = "burlywood";
         }
 
     }, false);
@@ -57,6 +59,16 @@ export function moveCards () {
             event.target.style.background = "";
             dragged.parentNode.removeChild( dragged );
             event.target.appendChild( dragged );
+
+            // ändrar data-type så korten hamnar rätt i cardArray
+            var getNewDatatype = event.target.getAttribute('id');
+            dragged.setAttribute('data-type', getNewDatatype);
+
+            updateLocalStorage();
+
+            console.log("Localstorage updated!");
+            
+            
         }
     
     }, false);
