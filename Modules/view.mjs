@@ -55,32 +55,40 @@ export function CreateKanBan(){
     document.getElementById('add3').addEventListener('click', function(){cardInput('3');});
     document.getElementById('add4').addEventListener('click', function(){cardInput('4');});
     printLayout();
+    
 }
 
 export function cardInput(type){
-    let input = document.createElement('Input')
-    input.setAttribute('Type', 'Text');
-    input.setAttribute('id', 'inputData');
-    input.placeholder = "Add a new card";
-    document.getElementById('Container').appendChild(input); 
-    if (type === '1'){
-        input.addEventListener('keyup', addCard('todo'));
-    }
-    else if (type === '2'){
-        input.addEventListener('keyup', addCard('doing'));
-    }
-    else if (type === '3'){
-        input.addEventListener('keyup', addCard('test'));
-    }
-    else if (type === '4'){
-        input.addEventListener('keyup', addCard('done'));
+    var checkTextFieldExist = document.getElementById("inputData");
+    if(checkTextFieldExist == null) {
+        let input = document.createElement('Input')
+        input.setAttribute('Type', 'Text');
+        input.setAttribute('id', 'inputData');
+        input.placeholder = "Add a new card";
+        document.getElementById('Container').appendChild(input); 
+        if (type === '1'){
+            input.addEventListener('keyup', addCard('todo'));
+            document.getElementById("inputData").select();
+        }
+        else if (type === '2'){
+            input.addEventListener('keyup', addCard('doing'));
+            document.getElementById("inputData").select();
+        }
+        else if (type === '3'){
+            input.addEventListener('keyup', addCard('test'));
+            document.getElementById("inputData").select();
+        }
+        else if (type === '4'){
+            input.addEventListener('keyup', addCard('done'));
+            document.getElementById("inputData").select();
+        }
     }
 }
 
 export function createCardElement(cardType, text){
     let card = document.createElement('div');
-    card.setAttribute('class', 'card')
-    card.setAttribute('data-type', cardType)
+    card.setAttribute('class', 'card');
+    card.setAttribute('data-type', cardType);
     card.id = '_' + Math.random().toString(36).substr(2,9);
     card.setAttribute("draggable", true);
     card.setAttribute("ondragstart", "event.dataTransfer.setData('text/plain',null)");
