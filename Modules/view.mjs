@@ -95,7 +95,7 @@ export function createCardElement(cardType, text){
     card.setAttribute("ondragstart", "event.dataTransfer.setData('text/plain',null)");
     var test = "edit" + card.id;
     var d = "del" + card.id;
-    card.innerHTML = text + "<a id='" + test.toString() + "'>+</a>" + "<a id='" + d.toString() + "'>-</a>";
+    card.innerHTML = text + "<a id='" + test.toString() + "'><i class='fas fa-edit'></i></a>" + "<a id='" + d.toString() + "'><i class='fas fa-trash'></i></a>";
     document.getElementById(cardType).appendChild(card);
     document.getElementById(test).addEventListener('click', function(){editcard(this.id);});
     document.getElementById(d).addEventListener('click', function(){
@@ -148,7 +148,7 @@ export function editcard(id)
             card.innerHTML = "";
             var test = "edit" + cardid;
             var d = "del" + card.id;
-            card.innerHTML = input.value + "<a id='" + test.toString() + "'>+</a>" + "<a id='" + d.toString() + "'>-</a>";
+            card.innerHTML = input.value + "<a id='" + test.toString() + "'><i class='fas fa-edit'></i></a>" + "<a id='" + d.toString() + "'><i class='fas fa-trash'></i></a>";
             document.getElementById(test).addEventListener('click', function(){editcard(this.id);});
             document.getElementById(d).addEventListener('click', function(){
                 let result = window.confirm('Är det säkert att du vill ta bort kortet?')
