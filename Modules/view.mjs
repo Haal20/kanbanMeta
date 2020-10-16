@@ -117,7 +117,7 @@ export function updateLocalStorage(){
         }
         allCards.push(object)
     })
-    console.log(allCards).innerHTML
+    //console.log(allCards).innerHTML
     localStorage.setItem('myCards', JSON.stringify(allCards))
 }
 
@@ -149,7 +149,14 @@ export function editcard(id)
             var test = "edit" + cardid;
             var d = "del" + card.id;
             card.innerHTML = input.value + "<a id='" + test.toString() + "'><i class='fas fa-edit'></i></a>" + "<a id='" + d.toString() + "'><i class='fas fa-trash'></i></a>";
-            document.getElementById(test).addEventListener('click', function(){editcard(this.id);});
+            document.getElementById(test).addEventListener('click', function(){
+            
+                editcard(this.id);
+                updateLocalStorage();
+            
+            });
+            
+            
             document.getElementById(d).addEventListener('click', function(){
                 let result = window.confirm('Är det säkert att du vill ta bort kortet?')
                 if (result){
